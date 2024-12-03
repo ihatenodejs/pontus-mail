@@ -21,7 +21,7 @@ Landing page for p0ntus mail
    ./self start
    ```
 
-You will now have to use a server (NGINX, Apache2, etc.) to serve files from the `./public` directory.
+You will now have to use a server (NGINX, Apache2, etc.) to serve files from the `./public` directory. You may use the example `default.conf` with NGINX if you wish.
 
 Make changes from the `./src` directory, and `self` will copy them over.
 ## With Docker
