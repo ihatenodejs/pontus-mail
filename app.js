@@ -52,6 +52,10 @@ app.post('/register', registerLimiter, (req, res) => {
   res.render('success');
 });
 
+app.get('/success', (req, res) => {
+  res.render('success');
+});
+
 app.get('/register', (req, res) => {
   res.render('register');
 });
