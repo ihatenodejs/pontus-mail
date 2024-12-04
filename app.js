@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const winston = require('winston');
 const rateLimit = require('express-rate-limit');
+const fs = require('fs');
 
 const logger = winston.createLogger({
   level: 'info',
@@ -17,12 +18,15 @@ const logger = winston.createLogger({
   ],
 });
 
+const exclusions = JSON.parse(fs.readFileSync('exclusions.json', 'utf8')).excludedIPs;
+
 const registerLimiter = rateLimit({
   windowMs: 24 * 60 * 60 * 1000,
   max: 1,
   message: 'You have already submitted a registration today. Please try again tomorrow.',
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req, res) => exclusions.includes(req.ip)
 });
 
 const app = express();
