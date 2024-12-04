@@ -7,5 +7,6 @@ services:
       - "80:3000"
     volumes:
       - ./register.log:/usr/src/app/register.log
+      - ./exclusions.json:/usr/src/app/exclusions.json
     environment:
       - NODE_ENV=production
