@@ -1,0 +1,26 @@
+<%- include('shards/header', { title: 'Donate - p0ntus mail' }) %>
+<div class="container">
+    <%- include('shards/nav', { currentPage: 'donate' }) %>
+    <i class="il mt-5">Current donation progress this month</i>
+    <hr>
+    <div class="progress mt-3">
+        <div class="progress-bar bg-dark" role="progressbar" style="width: <%= (current / goal) * 100 %>%;" aria-valuenow="<%= current %>" aria-valuemin="0" aria-valuemax="<%= goal %>">$<%= current %> / $<%= goal %></div>
+    </div>
+    <div class="d-flex justify-content-between mt-2">
+        <span><b>Current:</b> $<%= current %></span>
+        <span><b>Goal:</b> $<%= goal %></span>
+    </div>
+    <p>This goal represents the cost of the server and its operation, based on the bill from the previous month.</p>
+    <hr>
+    <i class="il mt-5">Donate with Cryptocurrency</i>
+    <hr>
+    <div class="text-start">
+        <h5><i class="fa-brands fa-bitcoin ico-sm" style="color: #f7931a;"></i> Bitcoin</h5>
+        <p><%= bitcoin %></p>
+        <h5><i class="fa-brands fa-ethereum ico-sm" style="color: #3c3c3d;"></i> Ethereum</h5>
+        <p><%= ethereum %></p>
+        <h5><i class="fa-solid fa-litecoin-sign ico-sm" style="color: #bebebe;"></i> Litecoin</h5>
+        <p><%= litecoin %></p>
+    </div>
+</div>
+<%- include('shards/footer') %>

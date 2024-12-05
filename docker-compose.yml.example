@@ -8,5 +8,6 @@ services:
     volumes:
       - ./register.log:/usr/src/app/register.log
       - ./exclusions.json:/usr/src/app/exclusions.json
+      - ./donations.json:/usr/src/app/donations.json
     environment:
       - NODE_ENV=production

@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const fs = require('fs');
 //const winston = require('winston');
 //const rateLimit = require('express-rate-limit');
-//const fs = require('fs');
 
 //const logger = winston.createLogger({
 //  level: 'info',
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', { currentPage: 'home' });
 });
 
 //app.post('/register', registerLimiter, (req, res) => {
@@ -58,12 +58,24 @@ app.get('/', (req, res) => {
 //  res.render('success');
 //});
 
-app.get('/register', (req, res) => {
-  res.render('register');
+app.get('/services', (req, res) => {
+  res.render('services', { currentPage: 'services' });
 });
 
-app.get('/services', (req, res) => {
-  res.render('services');
+app.get('/register', (req, res) => {
+  res.render('register', { currentPage: 'register' });
+});
+
+app.get('/donate', (req, res) => {
+  const donations = JSON.parse(fs.readFileSync('donations.json', 'utf8'));
+  res.render('donate', {
+    currentPage: 'donate',
+    bitcoin: donations.bitcoin,
+    litecoin: donations.litecoin,
+    ethereum: donations.ethereum,
+    current: donations.current,
+    goal: donations.goal
+  });
 });
 
 const PORT = process.env.PORT || 3000;

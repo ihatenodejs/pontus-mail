@@ -1,30 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - p0ntus mail</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css" integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
+<%- include('shards/header', { title: 'Register - p0ntus mail' }) %>
     <div class="container">
-        <h1>Register</h1>
-        <h3>Registration is done via email</h3>
-        <i>Please contact <a href="mailto:signup@p0ntus.com">signup<i class="fa-solid fa-at"></i>p0ntus.com</a> with the following info:</i>
+        <%- include('shards/nav', { currentPage: 'register' }) %>
+        <i class="il mt-5">Register</i>
         <hr>
-        <ul class="list-group">
+        <i>Please contact <a href="mailto:signup@p0ntus.com">signup<i class="fa-solid fa-at"></i>p0ntus.com</a> with the following info:</i>
+        <ul class="list-group mt-3">
             <li class="list-group-item">Name that goes in email header (full name/username/alias)</li>
             <li class="list-group-item">Desired email address (e.g., yourname@p0ntus.com)</li>
             <li class="list-group-item">Reason for wanting an email</li>
             <li class="list-group-item">Telegram username</li>
         </ul>
-        <hr>
-        <a href="/" class="btn bg-dark text-white">Return to Home</a>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<%- include('shards/footer') %>

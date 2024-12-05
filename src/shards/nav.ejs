@@ -1,0 +1,24 @@
+<h1><i class="fa-solid fa-envelope text-dark ico"></i> p0ntus mail.</h1>
+<h3>simple, mindful, secure email.</h3>
+<nav class="nav justify-content-center">
+    <% if (currentPage === 'home') { %>
+        <span class="nav-link text-dark"><b>Home</b></span>
+    <% } else { %>
+        <a href="/" class="nav-link text-dark">Home</a>
+    <% } %>
+    <% if (currentPage === 'services') { %>
+        <span class="nav-link text-dark"><b>Services</b></span>
+    <% } else { %>
+        <a href="/services" class="nav-link text-dark">Services</a>
+    <% } %>
+    <% if (currentPage === 'register') { %>
+        <span class="nav-link text-dark"><b>Register</b></span>
+    <% } else { %>
+        <a href="/register" class="nav-link text-dark">Register</a>
+    <% } %>
+    <% if (currentPage === 'donate') { %>
+        <span class="nav-link text-dark"><b>Donate</b></span>
+    <% } else { %>
+        <a href="/donate" class="nav-link text-dark">Donate</a>
+    <% } %>
+</nav>

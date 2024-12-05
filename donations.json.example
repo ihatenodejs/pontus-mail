@@ -1,0 +1,7 @@
+{
+  "bitcoin": "bitcoinaddresshere",
+  "litecoin": "litecoinaddresshere",
+  "ethereum": "ethereumaddresshere",
+  "current": 0,
+  "goal": 55
+}

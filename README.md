@@ -12,18 +12,20 @@ Landing page for p0ntus mail
    ```bash
    mv docker-compose.yml.example docker-compose.yml
    ```
-3. Make the `self` script executable
+3. Copy the example `donations.json`
    ```bash
-   chmod +x self
+   mv donations.json.example donations.json
    ```
-4. Use `self` script to serve files into `public/` directory
+4. Install dependencies
    ```bash
-   ./self start
+   npm install
+   ```
+4. Start the server
+   ```bash
+   node app.js
    ```
 
-You will now have to use a server (NGINX, Apache2, etc.) to serve files from the `./public` directory. You may use the example `default.conf` with NGINX if you wish.
-
-Make changes from the `./src` directory, and `self` will copy them over.
+You will now have a fully functioning Node.js Express server, which will be running on port `3000`.
 ## With Docker
 You can also use Docker to self-host pontus-mail's frontend. Make sure you have docker-compose or docker-compose-plugin installed on your system.
 1. Clone the repo
@@ -35,17 +37,13 @@ You can also use Docker to self-host pontus-mail's frontend. Make sure you have 
    ```bash
    mv docker-compose.yml.example docker-compose.yml
    ```
-3. Make the `self` script executable
+3. Copy the example `donations.json`
    ```bash
-   chmod +x self
+   mv donations.json.example donations.json
    ```
-4. Start Docker containers
+4. Start and build Docker containers
    ```bash
-   docker compose up -d
-   ```
-5. Use `self` script to serve files into `public/` directory
-   ```bash
-   ./self start
+   docker compose up -d --build
    ```
 
-You will now have a fully functioning NGINX server, serving the pontus-mail website from the `./public` directory. Make your changes in the `./src` directory, if any.
+You will now have a fully functioning Node.js Express server, which will be running on the port specified in `docker-compose.yml`, and internally on port `3000`.
