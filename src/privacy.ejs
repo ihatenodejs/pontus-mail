@@ -1,0 +1,41 @@
+<%- include('shards/header', { title: 'Privacy - p0ntus mail' }) %>
+    <div class="container">
+        <%- include('shards/nav', { currentPage: 'privacy' }) %>
+        <i class="il mt-5">What we collect</i>
+        <hr>
+        <p class="text-start"><b>Our system collects automatically:</b></p>
+        <ul class="list-group text-start">
+            <li class="list-group-item">Log files which may include the currently logged-in IP address. Log files are stored in memory, and Redis lists.</li>
+            <li class="list-group-item">Last login time</li>
+            <li class="list-group-item">Storage used by your account</li>
+            <li class="list-group-item">Message count for your account</li>
+            <li class="list-group-item">Last message received time</li>
+            <li class="list-group-item">Account creation date</li>
+        </ul>
+        <p class="text-start mt-3"><b>What I collect by choice:</b></p>
+        <ul class="list-group text-start">
+            <li class="list-group-item">Email used at registration</li>
+            <li class="list-group-item">Telegram account (if given at registration)</li>
+        </ul>
+        <p class="text-start mt-3"><b>What the admin has access to:</b></p>
+        <ul class="list-group text-start">
+            <li class="list-group-item">Your email address</li>
+            <li class="list-group-item">Reset your password (your existing password is not visible)</li>
+            <li class="list-group-item">Delete your account</li>
+            <li class="list-group-item">Change your quotas</li>
+            <li class="list-group-item">Decrypt emails stored on server</li>
+        </ul>
+        <i class="il mt-3">What I do with the data collected</i>
+        <hr>
+        <p class="text-start">I don't store any of your data for monetary gain or marketing purposes. I have nothing to market to you.</p>
+        <p class="text-start">I also have no interest in using your data for other purposes than troubleshooting the mail server. Occasionally, I will clean out data and logs.</p>
+        <p class="text-start">I have no interest in reading your email, and will make no efforts to decrypt your data and read email. No, your email is not safe from the glowies.</p>
+        <p class="text-start">I will never share your data with third parties unless required by law.</p>
+        <i class="il mt-3">Security</i>
+        <hr>
+        <p class="text-start">I am committed to ensuring that your data is secure. However, I am no security professional.</p>
+        <p class="text-start">p0ntus mail is powered by Mailcow, running in Docker. I check for updates several times a day.</p>
+        <p class="text-start">A strong firewall is backing the server. The server is physically located in Michigan, USA.</p>
+        <p class="text-start">Your emails are stored encrypted and compressed (using LZ4). I, as the server admin, have access to the decryption keys.</p>
+    </div>
+<%- include('shards/footer') %>

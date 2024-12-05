@@ -78,6 +78,10 @@ app.get('/donate', (req, res) => {
   });
 });
 
+app.get('/privacy', (req, res) => {
+  res.render('privacy', { currentPage: 'privacy' });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

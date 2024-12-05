@@ -22,4 +22,9 @@
     <% } else { %>
         <a href="/donate" class="nav-link text-dark">Donate</a>
     <% } %>
+    <% if (currentPage === 'privacy') { %>
+        <span class="nav-link text-dark"><b>Privacy</b></span>
+    <% } else { %>
+        <a href="/privacy" class="nav-link text-dark">Privacy</a>
+    <% } %>
 </nav>
