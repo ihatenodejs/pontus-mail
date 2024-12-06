@@ -7,13 +7,21 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "ihatenodejs",
+  "license": "CC0-1.0",
   "dependencies": {
     "body-parser": "^1.20.3",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
-    "express-rate-limit": "^7.4.1",
     "winston": "^3.17.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihatenodejs/pontus-mail.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ihatenodejs/pontus-mail/issues"
+  },
+  "homepage": "https://github.com/ihatenodejs/pontus-mail#readme"
 }
