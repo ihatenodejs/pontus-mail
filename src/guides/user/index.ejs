@@ -1,0 +1,28 @@
+<%- include('../../shards/header', { title: 'Using the User Dashboard - p0ntus mail' }) %>
+<div class="container">
+    <%- include('../../shards/nav', { currentPage: 'guides' }) %>
+    <i class="il mt-5">Using the User Dashboard</i>
+    <hr>
+    <div class="text-start">
+        <h4>Signing in</h4>
+        <p>If you just signed up, use the default password with your requested email, and input that into <a href="https://user.p0ntus.com/">user.p0ntus.com</a>. Change your password in the interface, and follow the next steps using your email and password.</p>
+        <p>Even if you didn't just sign up, use your <i>email</i> and password to login.</p>
+        <h4>Using the User Dashboard</h4>
+        <p>Once you are signed in, you can use the user dashboard to manage your account. You can change your password and view account information. Everything is highly organized for ease of access :)</p>
+        <h4>Enabling Two-Factor Authentication</h4>
+        <p>On the main page, for traditional Google Authenticator/authenticator app setup, click the "Please select" dropdown under the "Set two-factor authentication method" section. Click Time-Based OTP, and scan the QR code to continue.</p>
+        <p>On the main page, for a FIDO device, select the "Register FIDO Device" button, and doing the normal process with your authenticator to sign in and register. Once done, it will be usable on the <a href="https://user.p0ntus.com">user.p0ntus.com</a> dashboard. You must setup traditional 2FA (or store it on your FIDO device, if supported) for SOGo webmail.</p>
+        <h4>Logging out</h4>
+        <p>When you are done, click the "Exit" icon in the top right corner of the UI.</p>
+        <h4>See also</h4>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="/guides/webmail">Using the Webmail</a>
+            </li>
+        </ul>
+        <a href="/guides" class="btn btn-dark mt-3">
+            <i class="fa-solid fa-arrow-left"></i> Back to Guides
+        </a>
+    </div>
+</div>
+<%- include('../../shards/footer') %>

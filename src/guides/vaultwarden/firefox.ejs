@@ -1,0 +1,31 @@
+<%- include('../../shards/header', { title: 'Using Vaultwarden on Firefox - p0ntus mail' }) %>
+<div class="container">
+    <%- include('../../shards/nav', { currentPage: 'guides' }) %>
+    <i class="il mt-5">Using Vaultwarden on Firefox</i>
+    <hr>
+    <ul class="list-group text-start">
+        <li class="list-group-item">
+            <b>STEP ONE</b><br>
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/" target="_blank">Install the Bitwarden extension from the Firefox Add-ons page</a>
+        </li>
+        <li class="list-group-item">
+            <b>STEP TWO</b><br>
+            <a href="https://vaultwarden.p0ntus.com" target="_blank">Sign up for p0ntus mail Vaultwarden if you haven't already.</a>
+        </li>
+        <li class="list-group-item">
+            <b>STEP THREE</b><br>
+            <p>Open the Bitwarden extension, and click (under the small 'servers' label) bitwarden.com, changing it to self hosted. This will bring up a dialog. Enter "https://vaultwarden.p0ntus.com" in the server URL, and leave the rest of the fields blank. It should now change 'bitwarden.com' to 'self hosted'.</p>
+        </li>
+        <li class="list-group-item">
+            <b>STEP FOUR</b><br>
+            <p>Enter your email and password, and click 'Log in'.</p>
+        </li>
+        <li class="list-group-item">
+            <b>You are now logged in, and you can use all of the features of Vaultwarden!</b>
+        </li>
+    </ul>
+    <a href="/guides" class="btn btn-dark mt-3">
+        <i class="fa-solid fa-arrow-left"></i> Back to Guides
+    </a>
+</div>
+<%- include('../../shards/footer') %>

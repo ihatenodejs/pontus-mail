@@ -40,6 +40,30 @@ app.get('/privacy', (req, res) => {
   res.render('privacy', { currentPage: 'privacy' });
 });
 
+app.get('/guides', (req, res) => {
+  res.render('guides', { currentPage: 'guides' });
+});
+
+app.get('/guides/user', (req, res) => {
+  res.render('guides/user/index', { currentPage: 'guides' });
+});
+
+app.get('/guides/webmail', (req, res) => {
+  res.render('guides/webmail/index', { currentPage: 'guides' });
+});
+
+app.get('/guides/vaultwarden/android', (req, res) => {
+  res.render('guides/vaultwarden/android', { currentPage: 'guides' });
+});
+
+app.get('/guides/vaultwarden/chrome', (req, res) => {
+  res.render('guides/vaultwarden/chrome', { currentPage: 'guides' });
+});
+
+app.get('/guides/vaultwarden/firefox', (req, res) => {
+  res.render('guides/vaultwarden/firefox', { currentPage: 'guides' });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

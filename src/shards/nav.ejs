@@ -27,4 +27,9 @@
     <% } else { %>
         <a href="/privacy" class="nav-link text-dark">Privacy</a>
     <% } %>
+    <% if (currentPage === 'guides') { %>
+        <span class="nav-link text-dark"><b>Guides</b></span>
+    <% } else { %>
+        <a href="/guides" class="nav-link text-dark">Guides</a>
+    <% } %>
 </nav>

@@ -1,0 +1,31 @@
+<%- include('../../shards/header', { title: 'Using Vaultwarden on Android - p0ntus mail' }) %>
+<div class="container">
+    <%- include('../../shards/nav', { currentPage: 'guides' }) %>
+    <i class="il mt-5">Using Vaultwarden on Android</i>
+    <hr>
+    <ul class="list-group text-start">
+        <li class="list-group-item">
+            <b>STEP ONE</b><br>
+            <a href="https://play.google.com/store/apps/details?id=com.x8bit.bitwarden" target="_blank">Install the Bitwarden extension from the Google Play Store</a>
+        </li>
+        <li class="list-group-item">
+            <b>STEP TWO</b><br>
+            <a href="https://vaultwarden.p0ntus.com" target="_blank">Sign up for p0ntus mail Vaultwarden if you haven't already.</a>
+        </li>
+        <li class="list-group-item">
+            <b>STEP THREE</b><br>
+            <p>Open the app on your phone and under "Logging in on", click "bitwarden.com."</p>
+        </li>
+        <li class="list-group-item">
+            <b>STEP FOUR</b><br>
+            <p>Click self-hosted, then under Server URL, enter "https://vaultwarden.p0ntus.com" and leave the rest of the fields blank.</p>
+        </li>
+        <li class="list-group-item">
+            <b>You are now logged in, and you can use all of the features of Vaultwarden!</b>
+        </li>
+    </ul>
+    <a href="/guides" class="btn btn-dark mt-3">
+        <i class="fa-solid fa-arrow-left"></i> Back to Guides
+    </a>
+</div>
+<%- include('../../shards/footer') %>
