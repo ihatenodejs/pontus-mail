@@ -22,7 +22,7 @@ Landing page for p0ntus mail
    ```bash
    npm install
    ```
-4. Start the server
+5. Start the server
    ```bash
    node app.js
    ```
