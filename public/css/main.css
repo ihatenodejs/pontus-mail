@@ -1,13 +1,13 @@
 body {
-  font-family: 'EB Garamond', serif;
   background-color: #fdf6e3;
   color: #333;
+  font-family: 'EB Garamond', serif;
   padding: 2rem;
 }
 
 h1 {
-  font-weight: bold;
   font-size: 3rem;
+  font-weight: bold;
 }
 
 h3 {
@@ -20,16 +20,16 @@ h3 {
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 .card-text {
-  font-size: 1rem;
   color: #555;
+  font-size: 1rem;
 }
 
 .card-title {
@@ -39,25 +39,25 @@ h3 {
 }
 
 .container {
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-  padding: 2rem;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  max-width: 800px;
+  padding: 2rem;
+  text-align: center;
 }
 
 .il {
-  font-size: 1.5rem;
-  display: block;
-  margin-top: 1rem;
   color: #555;
+  display: block;
+  font-size: 1.5rem;
+  margin-top: 1rem;
 }
 
 .ico {
-  padding-right: 13px;
   font-size: xx-large;
+  padding-right: 13px;
 }
 
 .ico-sm {
