@@ -1,0 +1,21 @@
+<%- include('shards/header', { title: 'Request Status - p0ntus mail' }) %>
+<div class="container">
+  <%- include('shards/nav', { currentPage: 'request' }) %>
+  <i class="il mt-5">Request Status</i>
+  <hr>
+  <% if (request) { %>
+    <p>Request Status: <strong><%= request.status %></strong></p>
+    <% if (request.status === 'Approved') { %>
+      <div class="text-start">
+        <p>Your request has been approved. You can access your p0ntus mail account <a href="https://user.p0ntus.com/">here</a> with your email as the username and abcabc for the password. <b>FOR SECURITY, CHANGE YOUR PASSWORD ASAP.</b></p>
+        <p>I also suggest you check out our guides at <a href="https://mail.p0ntus.com/guides">mail.p0ntus.com/guides</a>.</p>
+        <p>You can also access Vaultwarden at <a href="https://vaultwarden.p0ntus.com/">vaultwarden.p0ntus.com</a>.</p>
+        <p>If you need any help or support, contact <a href="mailto:admin@p0ntus.com">admin@p0ntus.com</a>.</p>
+        <p>Your webmail can be accessed <a href="https://mail.p0ntus.com/SOGo">here</a>.</p>
+      </div>
+    <% } %>
+  <% } else { %>
+    <p>No request found for the provided email.</p>
+  <% } %>
+</div>
+<%- include('shards/footer') %>

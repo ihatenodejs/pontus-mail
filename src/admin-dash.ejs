@@ -1,0 +1,50 @@
+<%- include('shards/header', { title: 'Admin Dashboard - p0ntus mail' }) %>
+<div class="container">
+  <%- include('shards/nav', { currentPage: 'admin' }) %>
+  <i class="il mt-5">Dashboard</i>
+  <hr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Reason</th>
+        <th>Telegram</th>
+        <th>Status</th>
+        <th>Update Status</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% requests.forEach(request => { %>
+        <tr>
+          <td><%= request.id %></td>
+          <td><%= request.fullName %></td>
+          <td><%= request.email %></td>
+          <td><%= request.reason %></td>
+          <td><%= request.telegram %></td>
+          <td><%= request.status %></td>
+          <td>
+            <form action="/admin/update-status" method="POST">
+              <input type="hidden" name="id" value="<%= request.id %>">
+              <select name="status" class="form-control">
+                <option value="Pending" <% if (request.status === 'Pending') { %>selected<% } %>>Pending</option>
+                <option value="Approved" <% if (request.status === 'Approved') { %>selected<% } %>>Approved</option>
+                <option value="Denied" <% if (request.status === 'Denied') { %>selected<% } %>>Denied</option>
+              </select>
+              <button type="submit" class="btn btn-primary mt-2">Update</button>
+            </form>
+          </td>
+          <td>
+            <form action="/admin/delete-request" method="POST">
+              <input type="hidden" name="id" value="<%= request.id %>">
+              <button type="submit" class="btn btn-danger mt-2">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+<%- include('shards/footer') %>

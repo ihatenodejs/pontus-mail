@@ -1,14 +1,26 @@
 <%- include('shards/header', { title: 'Register - p0ntus mail' }) %>
 <div class="container">
     <%- include('shards/nav', { currentPage: 'register' }) %>
-    <i class="il mt-5">Register</i>
+    <h1 class="mt-5">Register</h1>
     <hr>
-    <i>Please contact <a href="mailto:signup@p0ntus.com">signup<i class="fa-solid fa-at"></i>p0ntus.com</a> with the following info:</i>
-    <ul class="list-group mt-3">
-        <li class="list-group-item">Name that goes in email header (full name/username/alias)</li>
-        <li class="list-group-item">Desired email address (e.g., yourname@p0ntus.com)</li>
-        <li class="list-group-item">Reason for wanting an email</li>
-        <li class="list-group-item">Telegram username</li>
-    </ul>
+    <form action="/register" method="POST">
+        <div class="form-group">
+            <label for="fullName">Name that goes in email header (full name/username/alias)</label>
+            <input type="text" class="form-control" id="fullName" name="fullName" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Desired email address (e.g., yourname@p0ntus.com)</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="reason">Reason for wanting an email</label>
+            <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="telegram">Telegram username</label>
+            <input type="text" class="form-control" id="telegram" name="telegram" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Register</button>
+    </form>
 </div>
 <%- include('shards/footer') %>

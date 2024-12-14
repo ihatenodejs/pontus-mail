@@ -11,11 +11,15 @@
   "license": "CC0-1.0",
   "dependencies": {
     "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "mariadb": "^3.4.0",
+    "mysql2": "^3.11.5",
+    "sequelize": "^6.37.5",
     "winston": "^3.17.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ihatenodejs/pontus-mail.git"

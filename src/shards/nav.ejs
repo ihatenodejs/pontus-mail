@@ -32,4 +32,10 @@
     <% } else { %>
         <a href="/guides" class="nav-link text-dark">Guides</a>
     <% } %>
+    <% if (currentPage === 'request') { %>
+        <span class="nav-link text-dark"><b>Request</b></span>
+    <% } %>
+    <% if (currentPage === 'admin') { %>
+        <span class="nav-link text-dark"><b>Admin</b></span>
+    <% } %>
 </nav>

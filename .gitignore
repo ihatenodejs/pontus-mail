@@ -4,3 +4,5 @@ docker-compose.yml
 register,log
 donations.json
 .idea/
+db/
+.env

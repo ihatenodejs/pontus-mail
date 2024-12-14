@@ -17,11 +17,17 @@ Landing page for p0ntus mail
    ```bash
    mv donations.json.example donations.json
    ```
-4. Install dependencies
+4. Copy the example `.env`
+   ```bash
+   mv .env.example .env
+   ```
+
+   Make sure you edit this with your MySQL server information and other values.
+5. Install dependencies
    ```bash
    npm install
    ```
-5. Start the server
+6. Start the server
    ```bash
    node app.js
    ```
@@ -38,6 +44,12 @@ You can also use Docker to self-host pontus-mail's frontend. Make sure you have 
    ```bash
    mv docker-compose.yml.example docker-compose.yml
    ```
+3. Copy the example `.env`
+   ```bash
+   mv .env.example .env
+   ```
+
+   Make sure you edit this file with values matching in `docker-compose.xml`, and other desired values like admin username/password.
 3. Copy the example `donations.json`
    ```bash
    mv donations.json.example donations.json
