@@ -126,11 +126,14 @@ function checkAdminAuth(req, res, next) {
   if (req.session.admin) {
     next();
   } else {
-    res.redirect('/admin', { error: null });
+    res.redirect('/admin');
   }
 }
 
 app.get('/admin', (req, res) => {
+  if (req.session.admin) {
+    return res.redirect('/admin/dashboard');
+  }
   res.render('admin-login', { currentPage: 'admin', error: null });
 });
 
