@@ -155,7 +155,7 @@ app.get('/admin/dashboard', checkAdminAuth, async (req, res) => {
 app.post('/admin/update-status', checkAdminAuth, async (req, res) => {
   const { id, status } = req.body;
   await Request.update({ status }, { where: { id } });
-  res.redireHot('/admin/dashboard');
+  res.redirect('/admin/dashboard');
 });
 
 app.post('/admin/delete-request', checkAdminAuth, async (req, res) => {

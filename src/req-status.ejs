@@ -14,6 +14,15 @@
         <p>Your webmail can be accessed <a href="https://mail.p0ntus.com/SOGo">here</a>.</p>
       </div>
     <% } %>
+    <% if (request.status === 'Pending') { %>
+      <p>Your request is pending approval. This page will be updated when your request been approved or denied.</p>
+    <% } %>
+    <% if (request.status === 'Denied') { %>
+      <p>Your request has been denied.</p>
+      <p>If you believe this is an error, please contact <a href="mailto:admin@p0ntus.com">admin@p0ntus.com</a>.</p>
+      <p>Please ensure the username you selected only includes letters, numbers, and periods/dashes. Your request may also be declined if you do not provide a valid reason or response in your application.</p>
+      <p>You may resubmit another request if you feel you deserve an email, or have fixed issues with your application.</p>
+    <% } %>
   <% } else { %>
     <p>No request found for the provided email.</p>
   <% } %>
