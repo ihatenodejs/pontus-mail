@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const fs = require('fs');
 const session = require('express-session');
 const { Sequelize, DataTypes } = require('sequelize');
 const { error } = require('console');
