@@ -1,4 +1,4 @@
-<%- include('shards/header', { title: 'Donate - p0ntus mail' }) %>
+<%- include('shards/header', { title: 'Donate - p0ntus mail', currentPage: 'donate' }) %>
 <div class="container">
     <%- include('shards/nav', { currentPage: 'donate' }) %>
     <i class="il mt-5">Current donation progress this month</i>
@@ -16,15 +16,31 @@
     <hr>
     <div class="text-start">
         <h5><i class="fa-brands fa-bitcoin ico-sm" style="color: #f7931a;"></i> Bitcoin</h5>
-        <p><%= bitcoin %></p>
+        <div class="d-flex justify-content-between">
+            <p id="bitcoin-address"><%= bitcoin %></p>
+            <button class="btn btn-outline-secondary btn-sm ms-2" onclick="copyToClipboard('bitcoin-address')">Copy</button>
+        </div>
         <h5><i class="fa-brands fa-ethereum ico-sm" style="color: #3c3c3d;"></i> Ethereum</h5>
-        <p><%= ethereum %></p>
+        <div class="d-flex justify-content-between">
+            <p id="ethereum-address"><%= ethereum %></p>
+            <button class="btn btn-outline-secondary btn-sm ms-2" onclick="copyToClipboard('ethereum-address')">Copy</button>
+        </div>
         <h5><i class="fa-solid fa-litecoin-sign ico-sm" style="color: #bebebe;"></i> Litecoin</h5>
-        <p><%= litecoin %></p>
+        <div class="d-flex justify-content-between">
+            <p id="litecoin-address"><%= litecoin %></p>
+            <button class="btn btn-outline-secondary btn-sm ms-2" onclick="copyToClipboard('litecoin-address')">Copy</button>
+        </div>
         <h5><i class="fa-brands fa-monero ico-sm" style="color: #fc6621;"></i> Monero</h5>
-        <p><%= monero %></p>
+        <div class="d-flex justify-content-between">
+            <p id="monero-address" class="monero"><%= monero %></p>
+            <button class="btn btn-outline-secondary btn-sm ms-2" onclick="copyToClipboard('monero-address')">Copy</button>
+        </div>
         <h5><i class="fa-solid fa-dollar-sign ico-sm"></i> Solana</h5>
-        <p><%= solana %></p>
+        <div class="d-flex justify-content-between">
+            <p id="solana-address"><%= solana %></p>
+            <button class="btn btn-outline-secondary btn-sm ms-2" onclick="copyToClipboard('solana-address')">Copy</button>
+        </div>
     </div>
 </div>
+<script src="/js/donate.js"></script>
 <%- include('shards/footer') %>

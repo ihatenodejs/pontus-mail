@@ -2,6 +2,14 @@
 <div class="container">
     <%- include('shards/nav', { currentPage: 'register' }) %>
     <h1 class="mt-5">Register</h1>
+    <i class="il mt-5">If you already filled out a registration request</i>
+    <hr>
+    <div class="text-center">
+      <a href="/request" class="btn bg-dark text-white mt-2">
+        <i class="fa-solid fa-person-circle-question ico-sm"></i> Check Registration Status
+      </a>
+    </div>
+    <i class="il mt-5">If you haven't filled out a registration request</i>
     <hr>
     <form action="/register" method="POST">
         <div class="form-group">
