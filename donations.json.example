@@ -2,6 +2,8 @@
   "bitcoin": "bitcoinaddresshere",
   "litecoin": "litecoinaddresshere",
   "ethereum": "ethereumaddresshere",
+  "monero": "moneroaddresshere",
+  "solana": "solanaaddresshere",
   "current": 0,
   "goal": 55
 }

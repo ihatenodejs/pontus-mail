@@ -60,6 +60,8 @@ app.get('/donate', (req, res) => {
     bitcoin: donations.bitcoin,
     litecoin: donations.litecoin,
     ethereum: donations.ethereum,
+    monero: donations.monero,
+    solana: donations.solana,
     current: donations.current,
     goal: donations.goal
   });
