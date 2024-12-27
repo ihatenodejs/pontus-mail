@@ -51,11 +51,11 @@ You can also use Docker to self-host pontus-mail's frontend. Make sure you have 
    ```
 
    Make sure you edit this file with values matching in `docker-compose.xml`, and other desired values like admin username/password.
-3. Copy the example `donations.json`
+4. Copy the example `donations.json`
    ```bash
    mv donations.json.example donations.json
    ```
-4. Start and build Docker containers
+5. Start and build Docker containers
    ```bash
    docker compose up -d --build
    ```
