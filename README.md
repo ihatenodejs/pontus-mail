@@ -60,3 +60,7 @@ You can also use Docker to self-host pontus-mail's frontend. Make sure you have 
    ```
 
 You will now have a fully functioning Node.js Express server, which will be running on the port specified in `docker-compose.yml`, and internally on port `3000`.
+
+# To-Do
+- [ ] Port to NextJS?
+- [ ] Hovering effects for buttons

@@ -4,7 +4,6 @@ const path = require('path');
 const fs = require('fs');
 const session = require('express-session');
 const { Sequelize, DataTypes } = require('sequelize');
-const { error } = require('console');
 
 require('dotenv').config();
 const app = express();
@@ -101,12 +100,15 @@ app.get('/register', (req, res) => {
 
 app.post('/register', async (req, res) => {
   const { fullName, email, reason, telegram } = req.body;
+  const crit = /^[a-zA-Z0-9.-]+$/; // regex (see also: public/js/register.js)
+  if (!crit.test(email) || /\s/.test(email) || email !== email.toLowerCase()) {
+    return res.render('error/500');
+  }
   await Request.create({ fullName, email, reason, telegram });
   res.render('reg-success', { currentPage: 'register' });
 });
 
 app.get('/request', async (req, res) => {
-  console.log("Got /request");
   const { email } = req.query;
 
   if (!email) {
@@ -167,6 +169,7 @@ app.post('/admin/delete-request', checkAdminAuth, async (req, res) => {
   res.redirect('/admin/dashboard');
 });
 
+// Start server on 3000
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
