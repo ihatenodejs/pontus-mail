@@ -3,10 +3,15 @@
   <i class="il mt-2">We need your email</i>
   <hr>
   <p class="mt-4 mb-4">We need an email to check your request. Please enter your p0ntus mail email address below:</p>
-  <form action="/request" method="get">
+  <form action="/request" method="get" onsubmit="return validateEmail()">
     <div class="form-group">
       <label class="mb-2" for="email">p0ntus mail email address:</label>
-      <input type="email" class="form-control" id="email" name="email" required>
+      <div class="input-group">
+        <input type="text" class="form-control" id="email" name="email" pattern="^[a-zA-Z0-9.\-]+$" required oninput="this.value = this.value.toLowerCase().replace(/\s/g, '')">
+        <div class="input-group-append">
+          <span class="input-group-text">@p0ntus.com</span>
+        </div>
+      </div>
     </div>
     <button type="submit" class="btn btn-primary mt-3">Submit</button>
   </form>

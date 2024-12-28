@@ -20,8 +20,8 @@ app.use(session({
 }));
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST || '127.0.0.1',
-  port: process.env.DB_PORT || 3306,
+  host: process.env.DB_HOST || '127.0.0.1', // pulls from .env or defaults to localhost
+  port: process.env.DB_PORT || 3306, // pulls from .env or defaults to 3306
   dialect: 'mysql'
 });
 
@@ -40,10 +40,9 @@ const Request = sequelize.define('Request', {
   }
 });
 
-// Sync models
+// Sync DB models
 sequelize.sync();
 
-// Routes
 app.get('/', (req, res) => {
   res.render('index', { currentPage: 'home' });
 });
@@ -69,6 +68,9 @@ app.get('/donate', (req, res) => {
 app.get('/privacy', (req, res) => {
   res.render('privacy', { currentPage: 'privacy' });
 });
+
+// Guide routes
+// TODO: Improve how guides are routed to be simpler
 
 app.get('/guides', (req, res) => {
   res.render('guides', { currentPage: 'guides' });
@@ -135,11 +137,13 @@ function checkAdminAuth(req, res, next) {
   }
 }
 
+// Admin routes
+
 app.get('/admin', (req, res) => {
   if (req.session.admin) {
     return res.redirect('/admin/dashboard');
   }
-  res.render('admin-login', { currentPage: 'admin', error: null });
+  res.render('admin/login', { currentPage: 'admin', error: null });
 });
 
 app.post('/admin', (req, res) => {
@@ -148,13 +152,13 @@ app.post('/admin', (req, res) => {
     req.session.admin = true;
     res.redirect('/admin/dashboard');
   } else {
-    res.render('admin-login', { error: 'An error occurred.' });
+    res.render('admin/login', { error: 'An error occurred.' });
   }
 });
 
 app.get('/admin/dashboard', checkAdminAuth, async (req, res) => {
   const requests = await Request.findAll();
-  res.render('admin-dash', { requests, currentPage: 'admin' });
+  res.render('admin/dash', { requests, currentPage: 'admin' });
 });
 
 app.post('/admin/update-status', checkAdminAuth, async (req, res) => {
@@ -169,7 +173,7 @@ app.post('/admin/delete-request', checkAdminAuth, async (req, res) => {
   res.redirect('/admin/dashboard');
 });
 
-// Start server on 3000
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
+// Start server on internal port defined in .env
+app.listen(process.env.INTERNAL_PORT, () => {
+  console.log(`Server started on port ${process.env.INTERNAL_PORT}`);
 });
