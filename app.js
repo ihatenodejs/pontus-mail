@@ -122,7 +122,7 @@ app.get('/request', async (req, res) => {
     if (!request) {
       return res.status(404).render('error/404');
     }
-    res.render('req-status', { request });
+    res.render('request', { request });
   } catch (error) {
     console.error(error);
     res.status(500).render('error/500');
