@@ -33,7 +33,9 @@
         <a href="/guides" class="nav-link text-dark">Guides</a>
     <% } %>
     <% if (currentPage === 'request') { %>
-        <span class="nav-link text-dark"><b>Request</b></span>
+        <span class="nav-link text-dark"><b>My Request</b></span>
+    <% } else { %>
+        <a href="/request" class="nav-link text-dark">My Request</a>
     <% } %>
     <% if (currentPage === 'admin') { %>
         <span class="nav-link text-dark"><b>Admin</b></span>

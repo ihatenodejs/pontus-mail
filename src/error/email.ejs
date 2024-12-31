@@ -1,6 +1,7 @@
 <%- include('../shards/header', { title: 'Request Status - p0ntus mail', currentPage: 'err' }) %>
 <div class="container">
-  <i class="il mt-2">We need your email</i>
+  <%- include('../shards/nav', { currentPage: 'request' }) %>
+  <i class="il mt-5">We need your email</i>
   <hr>
   <p class="mt-4 mb-4">We need an email to check your request. Please enter your p0ntus mail email address below:</p>
   <form action="/request" method="get" onsubmit="return validateEmail()">
