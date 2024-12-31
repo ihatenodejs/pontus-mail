@@ -158,7 +158,7 @@ app.post('/admin', (req, res) => {
 
 app.get('/admin/dashboard', checkAdminAuth, async (req, res) => {
   const requests = await Request.findAll();
-  res.render('admin/dash', { requests, currentPage: 'admin' });
+  res.render('admin/dash', { requests, currentPage: 'admin', user: process.env.ADMIN_USERNAME });
 });
 
 app.post('/admin/update-status', checkAdminAuth, async (req, res) => {
@@ -170,6 +170,21 @@ app.post('/admin/update-status', checkAdminAuth, async (req, res) => {
 app.post('/admin/delete-request', checkAdminAuth, async (req, res) => {
   const { id } = req.body;
   await Request.destroy({ where: { id } });
+  res.redirect('/admin/dashboard');
+});
+
+app.get('/admin/edit/:id', checkAdminAuth, async (req, res) => {
+  const { id } = req.params;
+  const request = await Request.findByPk(id);
+  if (!request) {
+    return res.status(404).render('error/404');
+  }
+  res.render('admin/edit', { request, currentPage: 'admin' });
+});
+
+app.post('/admin/edit', checkAdminAuth, async (req, res) => {
+  const { id, fullName, email, reason, telegram } = req.body;
+  await Request.update({ fullName, email, reason, telegram }, { where: { id } });
   res.redirect('/admin/dashboard');
 });
 
