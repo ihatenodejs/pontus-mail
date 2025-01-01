@@ -4,6 +4,9 @@ const path = require('path');
 const fs = require('fs');
 const session = require('express-session');
 const { Sequelize, DataTypes } = require('sequelize');
+const axios = require('axios');
+const NodeCache = require('node-cache');
+const cache = new NodeCache({ stdTTL: 1800 });
 
 require('dotenv').config();
 const app = express();
@@ -40,11 +43,44 @@ const Request = sequelize.define('Request', {
   }
 });
 
+async function fetchDomainData() {
+  const cachedData = cache.get('domainData');
+  if (cachedData) {
+    console.log(domainData);
+    return cachedData;
+  }
+
+  try {
+    const response = await axios.get('https://user.p0ntus.com/api/v1/get/domain/all', {
+      headers: {
+        'accept': 'application/json',
+        'X-API-Key': process.env.MC_API_KEY
+      }
+    });
+    const domainData = response.data;
+    cache.set('domainData', domainData);
+    return domainData;
+  } catch (error) {
+    console.error('Error fetching domain data:', error);
+    return [];
+  }
+}
+
 // Sync DB models
 sequelize.sync();
 
-app.get('/', (req, res) => {
-  res.render('index', { currentPage: 'home' });
+app.get('/', async (req, res) => {
+  const domainData = await fetchDomainData();
+  const domainCount = Array.isArray(domainData) ? domainData.length : 0;
+  const accountCount = Array.isArray(domainData) ? domainData.reduce((acc, domain) => acc + domain.mboxes_in_domain, 0) : 0;
+  const totalData = Array.isArray(domainData) ? domainData.reduce((acc, domain) => acc + parseInt(domain.bytes_total), 0) / (1024 * 1024) : 0;
+
+  res.render('index', {
+    currentPage: 'home',
+    domainCount,
+    accountCount,
+    totalData: totalData.toFixed(2) // Round to 2 decimal places
+  });
 });
 
 app.get('/services', (req, res) => {

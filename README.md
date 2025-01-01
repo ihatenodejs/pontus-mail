@@ -65,3 +65,4 @@ You will now have a fully functioning Node.js Express server, which will be runn
 # To-Do
 - [ ] Port to NextJS?
 - [ ] Hovering effects for buttons
+- [ ] Statistics animation
