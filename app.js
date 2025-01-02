@@ -46,7 +46,6 @@ const Request = sequelize.define('Request', {
 async function fetchDomainData() {
   const cachedData = cache.get('domainData');
   if (cachedData) {
-    console.log(domainData);
     return cachedData;
   }
 
