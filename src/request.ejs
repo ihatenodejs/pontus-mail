@@ -3,7 +3,28 @@
   <%- include('shards/nav', { currentPage: 'request' }) %>
   <i class="il mt-5">Request Status</i>
   <hr>
+  <form action="/request" method="POST">
+    <div class="form-group mb-3">
+      <label for="email" class="mb-2">Email</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="email" name="email" pattern="^[a-zA-Z0-9.-]+$" required oninput="this.value = this.value.toLowerCase().replace(/\s/g, '')">
+        <div class="input-group-prepend">
+          <span class="input-group-text">@</span>
+        </div>
+        <select class="form-select" id="domain" name="domain" required>
+          <% domains.forEach(domain => { %>
+            <option value="<%= domain %>"><%= domain %></option>
+          <% }); %>
+        </select>
+      </div>
+      <small class="form-text text-muted">Only letters, numbers, periods, and dashes are allowed.</small>
+    </div>
+    <button type="submit" class="btn btn-dark mt-3"><i class="fa-solid fa-search ico-sm"></i> Check Status</button>
+  </form>
+
   <% if (request) { %>
+    <hr class="mt-4" />
+    <p>Email: <strong><%= request.email %></strong></p>
     <p>Request Status: <strong><%= request.status %></strong></p>
     <% if (request.status === 'Approved') { %>
       <div class="text-start">

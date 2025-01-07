@@ -65,6 +65,17 @@ async function fetchDomainData() {
   }
 }
 
+function getDomains() {
+  const domainsPath = path.join(__dirname, 'domains.txt');
+  try {
+    const domains = fs.readFileSync(domainsPath, 'utf-8').split('\n').filter(Boolean);
+    return domains;
+  } catch (error) {
+    console.error('Error reading domains.txt:', error);
+    return [];
+  }
+}
+
 // Sync DB models
 sequelize.sync();
 
@@ -132,35 +143,70 @@ app.get('/guides/vaultwarden/firefox', (req, res) => {
 });
 
 app.get('/register', (req, res) => {
-  res.render('register', { currentPage: 'register' });
+  const domains = getDomains();
+  res.render('register', { domains });
 });
 
 app.post('/register', async (req, res) => {
-  const { fullName, email, reason, telegram } = req.body;
+  const { fullName, email, domain, reason, telegram } = req.body;
   const crit = /^[a-zA-Z0-9.-]+$/; // regex (see also: public/js/register.js)
+  
   if (!crit.test(email) || /\s/.test(email) || email !== email.toLowerCase()) {
     return res.render('error/500');
   }
-  await Request.create({ fullName, email, reason, telegram });
-  res.render('reg-success', { currentPage: 'register' });
+
+  const fullEmail = `${email}@${domain}`;
+
+  try {
+    await Request.create({ fullName, email: fullEmail, reason, telegram });
+    res.render('reg-success', { currentPage: 'register' });
+  } catch (error) {
+    console.error('Error creating request:', error);
+    res.render('error/500');
+  }
 });
 
 app.get('/request', async (req, res) => {
+  console.log("Found!");
   const { email } = req.query;
+  const domains = getDomains();
 
   if (!email) {
-    return res.status(400).render('error/email');
+    return res.render('error/email', { domains });
   }
 
   try {
     const request = await Request.findOne({ where: { email } });
     if (!request) {
-      return res.status(404).render('error/404');
+      return res.status(404).render('error/notfoundemail', { email, domain });
     }
-    res.render('request', { request });
+    res.render('request', { request, domains });
   } catch (error) {
     console.error(error);
-    res.status(500).render('error/500');
+    res.render('error/500');
+  }
+});
+
+app.post('/request', async (req, res) => {
+  console.log("Found!");
+  const { email, domain } = req.body;
+  const fullEmail = `${email}@${domain}`;
+  const domains = getDomains();
+
+  if (!email || !domain) {
+    return res.render('error/email', { domains });
+  }
+
+  try {
+    const request = await Request.findOne({ where: { email: fullEmail } });
+    const domains = getDomains();
+    if (!request) {
+      return res.render('error/notfoundemail', { email, domain });
+    }
+    res.render('request', { request, domains });
+  } catch (error) {
+    console.error(error);
+    res.render('error/500');
   }
 });
 

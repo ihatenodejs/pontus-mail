@@ -1,4 +1,4 @@
-<%- include('shards/header', { title: 'Register - p0ntus mail' }) %>
+<%- include('shards/header', { title: 'Register - p0ntus mail', currentPage: 'register' }) %>
 <div class="container">
     <%- include('shards/nav', { currentPage: 'register' }) %>
     <h1 class="mt-5">Register</h1>
@@ -21,9 +21,14 @@
             <label for="email" class="mb-2">Desired email address (e.g., yourname@p0ntus.com) - <b>Do not enter your current email in this box</b></label>
             <div class="input-group">
                 <input type="text" class="form-control" id="email" name="email" pattern="^[a-zA-Z0-9.-]+$" required oninput="this.value = this.value.toLowerCase().replace(/\s/g, '')">
-                <div class="input-group-append">
-                    <span class="input-group-text">@p0ntus.com</span>
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@</span>
                 </div>
+                <select class="form-select" id="domain" name="domain" required>
+                    <% domains.forEach(domain => { %>
+                        <option value="<%= domain %>"><%= domain %></option>
+                    <% }); %>
+                </select>
             </div>
             <small class="form-text text-muted">Only letters, numbers, periods, and dashes are allowed.</small>
         </div>
