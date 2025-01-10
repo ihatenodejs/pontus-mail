@@ -6,3 +6,4 @@ donations.json
 .idea/
 db/
 .env
+config/

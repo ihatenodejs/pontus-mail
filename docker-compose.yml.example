@@ -16,11 +16,17 @@ services:
       - DB_PASSWORD=mysqlrootpasswdhere
       - DB_NAME=pontusmail
   pontus-mail-db:
-    image: mysql:latest
+    container_name: pontus-mail-db
+    image: lscr.io/linuxserver/mariadb:latest
     environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
       - MYSQL_ROOT_PASSWORD=mysqlrootpasswdhere
       - MYSQL_DATABASE=pontusmail
+    volumes:
+      - ./config:/config
+      - ./db:/var/lib/mysql
     ports:
       - "3306:3306"
-    volumes:
-      - ./db:/var/lib/mysql
+    restart: unless-stopped
