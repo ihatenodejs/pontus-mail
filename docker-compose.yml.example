@@ -6,27 +6,6 @@ services:
     ports:
       - "2424:3000"
     volumes:
-      - ./register.log:/usr/src/app/register.log
-      - ./exclusions.json:/usr/src/app/exclusions.json
       - ./donations.json:/usr/src/app/donations.json
     environment:
       - NODE_ENV=production
-      - DB_HOST=pontus-mail-db
-      - DB_USER=root
-      - DB_PASSWORD=mysqlrootpasswdhere
-      - DB_NAME=pontusmail
-  pontus-mail-db:
-    container_name: pontus-mail-db
-    image: lscr.io/linuxserver/mariadb:latest
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-      - MYSQL_ROOT_PASSWORD=mysqlrootpasswdhere
-      - MYSQL_DATABASE=pontusmail
-    volumes:
-      - ./config:/config
-      - ./db:/var/lib/mysql
-    ports:
-      - "3306:3306"
-    restart: unless-stopped
