@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
-const session = require('express-session');
-const { Sequelize, DataTypes } = require('sequelize');
 const axios = require('axios');
 const NodeCache = require('node-cache');
 const cache = new NodeCache({ stdTTL: 1800 });
@@ -16,81 +14,47 @@ app.set('views', path.join(__dirname, 'src'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true
-}));
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST || '127.0.0.1', // pulls from .env or defaults to localhost
-  port: process.env.DB_PORT || 3306, // pulls from .env or defaults to 3306
-  dialect: 'mysql'
-});
+//async function fetchDomainData() {
+//  const cachedData = cache.get('domainData');
+//  if (cachedData) {
+//    return cachedData;
+//  }
+//
+//  try {
+//    const response = await axios.get('https://user.p0ntus.com/api/v1/get/domain/all', {
+//      headers: {
+//        'accept': 'application/json',
+//        'X-API-Key': process.env.MC_API_KEY
+//      }
+//    });
+//    const domainData = response.data;
+//    cache.set('domainData', domainData);
+//    return domainData;
+//  } catch (error) {
+//    console.error('Error fetching domain data:', error);
+//    return [];
+//  }
+//}
 
-sequelize.authenticate()
-  .then(() => console.log('Database connected'))
-  .catch(err => console.log('Error: ' + err));
-
-const Request = sequelize.define('Request', {
-  fullName: DataTypes.STRING,
-  email: DataTypes.STRING,
-  reason: DataTypes.TEXT,
-  telegram: DataTypes.STRING,
-  status: {
-    type: DataTypes.STRING,
-    defaultValue: 'Pending'
-  }
-});
-
-async function fetchDomainData() {
-  const cachedData = cache.get('domainData');
-  if (cachedData) {
-    return cachedData;
-  }
-
-  try {
-    const response = await axios.get('https://user.p0ntus.com/api/v1/get/domain/all', {
-      headers: {
-        'accept': 'application/json',
-        'X-API-Key': process.env.MC_API_KEY
-      }
-    });
-    const domainData = response.data;
-    cache.set('domainData', domainData);
-    return domainData;
-  } catch (error) {
-    console.error('Error fetching domain data:', error);
-    return [];
-  }
-}
-
-function getDomains() {
-  const domainsPath = path.join(__dirname, 'domains.txt');
-  try {
-    const domains = fs.readFileSync(domainsPath, 'utf-8').split('\n').filter(Boolean);
-    return domains;
-  } catch (error) {
-    console.error('Error reading domains.txt:', error);
-    return [];
-  }
-}
-
-// Sync DB models
-sequelize.sync();
+//function getDomains() {
+//  const domainsPath = path.join(__dirname, 'domains.txt');
+//  try {
+//    const domains = fs.readFileSync(domainsPath, 'utf-8').split('\n').filter(Boolean);
+//    return domains;
+//  } catch (error) {
+//    console.error('Error reading domains.txt:', error);
+//    return [];
+//  }
+//}
 
 app.get('/', async (req, res) => {
-  const domainData = await fetchDomainData();
-  const domainCount = Array.isArray(domainData) ? domainData.length : 0;
-  const accountCount = Array.isArray(domainData) ? domainData.reduce((acc, domain) => acc + domain.mboxes_in_domain, 0) : 0;
-  const totalData = Array.isArray(domainData) ? domainData.reduce((acc, domain) => acc + parseInt(domain.bytes_total), 0) / (1024 * 1024) : 0;
+  //const domainData = await fetchDomainData();
+  //const domainCount = Array.isArray(domainData) ? domainData.length : 0;
+  //const accountCount = Array.isArray(domainData) ? domainData.reduce((acc, domain) => acc + domain.mboxes_in_domain, 0) : 0;
+  //const totalData = Array.isArray(domainData) ? domainData.reduce((acc, domain) => acc + parseInt(domain.bytes_total), 0) / (1024 * 1024) : 0;
 
-  res.render('index', {
-    currentPage: 'home',
-    domainCount,
-    accountCount,
-    totalData: totalData.toFixed(2) // Round to 2 decimal places
-  });
+  res.render('index', { currentPage: 'home' });
 });
 
 app.get('/services', (req, res) => {
@@ -140,133 +104,6 @@ app.get('/guides/vaultwarden/chrome', (req, res) => {
 
 app.get('/guides/vaultwarden/firefox', (req, res) => {
   res.render('guides/vaultwarden/firefox', { currentPage: 'guides' });
-});
-
-app.get('/register', (req, res) => {
-  const domains = getDomains();
-  res.render('register', { domains });
-});
-
-app.post('/register', async (req, res) => {
-  const { fullName, email, domain, reason, telegram } = req.body;
-  const crit = /^[a-zA-Z0-9.-]+$/; // regex (see also: public/js/register.js)
-  
-  if (!crit.test(email) || /\s/.test(email) || email !== email.toLowerCase()) {
-    return res.render('error/500');
-  }
-
-  const fullEmail = `${email}@${domain}`;
-
-  try {
-    await Request.create({ fullName, email: fullEmail, reason, telegram });
-    res.render('reg-success', { currentPage: 'register' });
-  } catch (error) {
-    console.error('Error creating request:', error);
-    res.render('error/500');
-  }
-});
-
-app.get('/request', async (req, res) => {
-  console.log("Found!");
-  const { email } = req.query;
-  const domains = getDomains();
-
-  if (!email) {
-    return res.render('error/email', { domains });
-  }
-
-  try {
-    const request = await Request.findOne({ where: { email } });
-    if (!request) {
-      return res.status(404).render('error/notfoundemail', { email, domain });
-    }
-    res.render('request', { request, domains });
-  } catch (error) {
-    console.error(error);
-    res.render('error/500');
-  }
-});
-
-app.post('/request', async (req, res) => {
-  console.log("Found!");
-  const { email, domain } = req.body;
-  const fullEmail = `${email}@${domain}`;
-  const domains = getDomains();
-
-  if (!email || !domain) {
-    return res.render('error/email', { domains });
-  }
-
-  try {
-    const request = await Request.findOne({ where: { email: fullEmail } });
-    const domains = getDomains();
-    if (!request) {
-      return res.render('error/notfoundemail', { email, domain });
-    }
-    res.render('request', { request, domains });
-  } catch (error) {
-    console.error(error);
-    res.render('error/500');
-  }
-});
-
-function checkAdminAuth(req, res, next) {
-  if (req.session.admin) {
-    next();
-  } else {
-    res.redirect('/admin');
-  }
-}
-
-// Admin routes
-
-app.get('/admin', (req, res) => {
-  if (req.session.admin) {
-    return res.redirect('/admin/dashboard');
-  }
-  res.render('admin/login', { currentPage: 'admin', error: null });
-});
-
-app.post('/admin', (req, res) => {
-  const { username, password } = req.body;
-  if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD) {
-    req.session.admin = true;
-    res.redirect('/admin/dashboard');
-  } else {
-    res.render('admin/login', { error: 'An error occurred.' });
-  }
-});
-
-app.get('/admin/dashboard', checkAdminAuth, async (req, res) => {
-  const requests = await Request.findAll();
-  res.render('admin/dash', { requests, currentPage: 'admin', user: process.env.ADMIN_USERNAME });
-});
-
-app.post('/admin/update-status', checkAdminAuth, async (req, res) => {
-  const { id, status } = req.body;
-  await Request.update({ status }, { where: { id } });
-  res.redirect('/admin/dashboard');
-});
-
-app.post('/admin/delete-request', checkAdminAuth, async (req, res) => {
-  const { id } = req.body;
-  await Request.destroy({ where: { id } });
-  res.redirect('/admin/dashboard');
-});
-
-app.get('/admin/edit/:id', checkAdminAuth, async (req, res) => {
-  const { id } = req.params;
-  const request = await Request.findByPk(id);
-  if (!request) {
-    return res.status(404).render('error/404');
-  }
-  res.render('admin/edit', { request, currentPage: 'admin' });
-});
-
-app.post('/admin/edit', checkAdminAuth, async (req, res) => {
-  const { id, fullName, email, reason, telegram } = req.body;
-  await Request.update({ fullName, email, reason, telegram }, { where: { id } });
-  res.redirect('/admin/dashboard');
 });
 
 // Start server on internal port defined in .env

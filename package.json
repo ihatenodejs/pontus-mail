@@ -17,7 +17,7 @@
     "express": "^4.21.1",
     "express-session": "^1.18.1",
     "mariadb": "^3.4.0",
-    "mysql2": "^3.11.5",
+    "mysql2": "^3.12.0",
     "node-cache": "^5.1.2",
     "sequelize": "^6.37.5",
     "winston": "^3.17.0"

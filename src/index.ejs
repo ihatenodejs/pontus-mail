@@ -10,33 +10,20 @@
         <div class="row">
             <div class="col-md-6 text-start">
                 <h5><i>If you aren't a current user</i></h5>
-                <a href="/register" class="btn bg-dark text-white mt-2"><i class="fa-solid fa-user-plus ico-sm"></i> Register</a>
-                <a href="/request" class="btn bg-dark text-white mt-2"><i class="fa-solid fa-person-circle-question ico-sm"></i> Check Registration Status</a>
+                <a href="https://user.pontusmail.org/admin/user/signup" class="btn bg-dark text-white mt-2"><i class="fa-solid fa-user-plus ico-sm"></i> Register</a>
             </div>
             <div class="col-md-6 text-start">
                 <h5><i>If you are a current user</i></h5>
-                <a href="/SOGo" class="btn bg-dark text-white mt-2"><i class="fa-solid fa-envelope ico-sm"></i> Webmail</a>
-                <a href="https://user.p0ntus.com" class="btn bg-dark text-white mt-2"><i class="fa-solid fa-user ico-sm"></i> Account</a>
+                <a href="https://user.pontusmail.org/webmail/" class="btn bg-dark text-white mt-2"><i class="fa-solid fa-envelope ico-sm"></i> Webmail</a>
+                <a href="https://user.pontusmail.org" class="btn bg-dark text-white mt-2"><i class="fa-solid fa-user ico-sm"></i> Account</a>
                 <a href="https://vaultwarden.p0ntus.com" class="btn bg-dark text-white mt-2"><i class="fa-solid fa-key ico-sm"></i> Vaultwarden</a>
                 <a href="/guides" class="btn bg-dark text-white mt-2"><i class="fa-solid fa-book ico-sm"></i> Guides</a>
+                <a href="https://user.pontusmail.org/admin/client" class="btn bg-dark text-white mt-2"><i class="fa-solid fa-question-mark ico-sm"></i> Client Setup</a>
             </div>
         </div>
         <i class="il mt-5">Statistics</i>
         <hr>
-        <div class="row mt-5">
-            <div class="col-md-4 text-center">
-              <h3><%= domainCount %></h3>
-              <p>Domains Hosted</p>
-            </div>
-            <div class="col-md-4 text-center">
-              <h3><%= accountCount %></h3>
-              <p>Accounts</p>
-            </div>
-            <div class="col-md-4 text-center">
-              <h3><%= totalData %></h3>
-              <p>Total Data (MB)</p>
-            </div>
-        </div>
+        <p>As we have migrated to a new email platform, we are currently rewriting this.</p>
         <small class="form-text text-muted mt-2">Please note all domains may not be available for registration.</small>
     </div>
 <%- include('shards/footer') %>

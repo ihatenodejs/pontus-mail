@@ -12,11 +12,7 @@
         <a href="/services" class="nav-link text-dark">Services</a>
     <% } %>
     <a href="https://status.p0ntus.com/" class="nav-link text-dark">Status</a>
-    <% if (currentPage === 'register') { %>
-        <span class="nav-link text-dark"><b>Register</b></span>
-    <% } else { %>
-        <a href="/register" class="nav-link text-dark">Register</a>
-    <% } %>
+    <a href="https://user.pontusmail.org/admin/user/signup" class="nav-link text-dark">Register</a>
     <% if (currentPage === 'donate') { %>
         <span class="nav-link text-dark"><b>Donate</b></span>
     <% } else { %>
@@ -31,13 +27,5 @@
         <span class="nav-link text-dark"><b>Guides</b></span>
     <% } else { %>
         <a href="/guides" class="nav-link text-dark">Guides</a>
-    <% } %>
-    <% if (currentPage === 'request') { %>
-        <span class="nav-link text-dark"><b>My Request</b></span>
-    <% } else { %>
-        <a href="/request" class="nav-link text-dark">My Request</a>
-    <% } %>
-    <% if (currentPage === 'admin') { %>
-        <span class="nav-link text-dark"><b>Admin</b></span>
     <% } %>
 </nav>
