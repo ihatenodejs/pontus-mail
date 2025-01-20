@@ -90,8 +90,24 @@ app.get('/guides/user', (req, res) => {
   res.render('guides/user/index', { currentPage: 'guides' });
 });
 
-app.get('/guides/webmail', (req, res) => {
-  res.render('guides/webmail/index', { currentPage: 'guides' });
+app.get('/guides/user/password-change', (req, res) => {
+  res.render('guides/user/password-change', { currentPage: 'guides' });
+});
+
+app.get('/guides/user/external-accounts', (req, res) => {
+  res.render('guides/user/external-accounts', { currentPage: 'guides' });
+});
+
+app.get('/guides/user/create-account', (req, res) => {
+  res.render('guides/user/create-account', { currentPage: 'guides' });
+});
+
+app.get('/guides/email', (req, res) => {
+  res.render('guides/email/index', { currentPage: 'guides' });
+});
+
+app.get('/guides/email/thunderbird', (req, res) => {
+  res.render('guides/email/thunderbird', { currentPage: 'guides' });
 });
 
 app.get('/guides/vaultwarden/android', (req, res) => {

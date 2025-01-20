@@ -7,3 +7,4 @@ donations.json
 db/
 .env
 config/
+.vscode/

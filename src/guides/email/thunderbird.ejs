@@ -1,0 +1,40 @@
+<%- include('../../shards/header', { title: 'Setting up Thunderbird - p0ntus mail' }) %>
+<div class="container">
+    <%- include('../../shards/nav', { currentPage: 'guides' }) %>
+    <i class="il mt-5">Setting up Thunderbird</i>
+    <hr>
+    <div class="text-start">
+        <h4 class="mb-3">Adding your account</h4>
+        <a href="/img/thunderbird_step_1.png" data-bs-toggle="lightbox" data-bs-max-width="100%">
+            <img src="/img/thunderbird_step_1.png" class="img-fluid img-thumbnail" alt="Thunderbird Add Account Screen">
+        </a>
+        <p class="mt-3">This screenshot was taken on Gentoo Linux, however should reflect the UI and flow of other systems.</p>
+        <p class="mt-3">To add your account, simply type in your desired name (this goes in the headers), your email, and your password. Next, click "Configure manually" and see the next screenshot.</p>
+        <a href="/img/thunderbird_step_2.png" data-bs-toggle="lightbox" data-bs-max-width="100%">
+            <img src="/img/thunderbird_step_2.png" class="img-fluid img-thumbnail" alt="Thunderbird Manual Config Screen">
+        </a>
+        <p class="mt-3">Next, fill in the details according to the <a href="https://user.pontusmail.org/admin/client">client setup page</a> or from the screenshot. Make sure your email is inputted, not the sample one.</p>
+        <p class="mt-3">After filling in the details, you can click "Advanced config" to use the details you just filled in. <b>Do not click the other buttons.</b></p>
+        <a href="/img/thunderbird_confirm_advanced_config.png" data-bs-toggle="lightbox" data-bs-max-width="100%">
+            <img src="/img/thunderbird_confirm_advanced_config.png" class="img-fluid img-thumbnail" alt="Thunderbird Confirm Advanced Config Popup">
+        </a>
+        <p class="mt-3">You should hit "Ok" on the next popup, as we are sure we want to use the config you filled in.</p>
+        <a href="/img/thunderbird_add_security_exception.png" data-bs-toggle="lightbox" data-bs-max-width="100%">
+            <img src="/img/thunderbird_add_security_exception.png" class="img-fluid img-thumbnail" alt="Thunderbird Confirm Advanced Config Popup">
+        </a>
+        <p class="mt-3">You may also be asked to add a security exception. Simply ignore the other buttons and click "Confirm Security Exception." This is because my mail server uses many domains, but only one SSL certificate. Your email will still be secure.</p>
+        <h4>See also</h4>
+        <ul class="list-group text-start">
+            <li class="list-group-item">
+                <a href="/guides/email">Using the Webmail</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/guides/user">Using the User Dashboard</a>
+            </li>
+        </ul>
+        <a href="/guides" class="btn btn-dark mt-3">
+            <i class="fa-solid fa-arrow-left"></i> Back to Guides
+        </a>
+    </div>
+</div>
+<%- include('../../shards/footer') %>

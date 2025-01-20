@@ -1,0 +1,35 @@
+<%- include('../../shards/header', { title: 'Using the Webmail - p0ntus mail' }) %>
+<div class="container">
+    <%- include('../../shards/nav', { currentPage: 'guides' }) %>
+    <i class="il mt-5">Using the Webmail</i>
+    <hr>
+    <div class="text-start">
+        <h4 class="mb-3">Signing in</h4>
+        <a href="/img/webmail_signin.png" data-bs-toggle="lightbox" data-bs-max-width="100%">
+            <img src="/img/webmail_signin.png" class="img-fluid img-thumbnail" alt="Webmail Login">
+        </a>
+        <p class="mt-3">Signing in is extremely simple. Just input the email and password you signed up for (or <a href="https://user.pontusmail.org/admin/user/signup">sign up for an account</a>), and click which application you would like to sign in to.</p>
+        <p class="mt-3">This can either be the "Admin," which is your account settings or "Webmail" which takes you to Roundcube, our webmail provider.</p>
+        <h4 class="mt-3 mb-3">Using the Webmail</h4>
+        <a href="/img/webmail_inbox.png" data-bs-toggle="lightbox" data-bs-max-width="100%">
+            <img src="/img/webmail_inbox.png" class="img-fluid img-thumbnail" alt="Webmail Inbox">
+        </a>
+        <p class="mt-2">Once you are signed in, you can use the webmail to send and receive emails. You can also use the contacts feature included with Roundcube and gain quick access to your user control panel on the sidebar.</p>
+        <p class="mt-2">You can use the image as a reference guide to perform a variety of actions.</p>
+        <h4>Logging out</h4>
+        <p class="mt-3">When you are done, click the "Logout" icon in the bottom left corner of the UI.</p>
+        <h4>See also</h4>
+        <ul class="list-group text-start">
+            <li class="list-group-item">
+                <a href="/guides/user">Using the User Dashboard</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/guides/email/thunderbird">Setting up Thunderbird</a>
+            </li>
+        </ul>
+        <a href="/guides" class="btn btn-dark mt-3">
+            <i class="fa-solid fa-arrow-left"></i> Back to Guides
+        </a>
+    </div>
+</div>
+<%- include('../../shards/footer') %>
