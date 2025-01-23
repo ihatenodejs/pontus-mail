@@ -6,23 +6,25 @@
         <p class="text-start"><b>Our system collects automatically:</b></p>
         <ul class="list-group text-start">
             <li class="list-group-item">Log files which may include the currently logged-in IP address, user agent, or other identifying information. We clear this data as much as possible.</li>
+            <li class="list-group-item">Linked external email addresses' folders, last check date, status, created date, users, and the ability to take actions (like you can on your dashboard).</li>
             <li class="list-group-item">Storage and disk quota used by your account</li>
             <li class="list-group-item">Account creation date (no time)</li>
-            <li class="list-group-item">Linked external email addresses' folders, last check date, status, created date, users, and the ability to take actions (like you can on your dashboard).</li>
             <li class="list-group-item">Automatic reply settings</li>
         </ul>
         <p class="text-start mt-3"><b>What I collect by choice:</b></p>
         <ul class="list-group text-start">
             <li class="list-group-item">I do not collect any extra information at the moment</li>
         </ul>
-        <p class="text-start mt-3"><b>What the admin has access to:</b></p>
+        <p class="text-start mt-3"><b>What admins have access to:</b></p>
         <ul class="list-group text-start">
-            <li class="list-group-item">Your email address</li>
+            <!-- This is classified as what front-end services are available to Mailu admins-->
             <li class="list-group-item">Reset your password (your existing password is not visible)</li>
+            <li class="list-group-item">Most automatically collected data (see above)</li>
+            <li class="list-group-item">Your registered email address</li>
+            <li class="list-group-item">Change your account quotas</li>
             <li class="list-group-item">Delete your account</li>
-            <li class="list-group-item">Change your quotas</li>
-            <li class="list-group-item">Decrypt emails stored on server</li>
         </ul>
+        <p class="text-start mt-3"><b>Please Note:</b> It may be possible for the server owner (or an administrator with shell access) to view your messages</p>
         <i class="il mt-3">What I do with the data collected</i>
         <hr>
         <p class="text-start">I don't store any of your data for monetary gain or marketing purposes. I have nothing to market to you.</p>
@@ -31,9 +33,9 @@
         <p class="text-start">I will never share your data with third parties unless required by law.</p>
         <i class="il mt-3">Security</i>
         <hr>
+        <p class="text-start">Provided all of our security is functioning, only the owners of this service (p0ntus and lucmsilva) and the hosting provider (Namecheap) has access to the data and server.</p>
         <p class="text-start">I am committed to ensuring that your data is secure. However, I am no security professional.</p>
-        <p class="text-start">p0ntus mail is powered by Mailcow, running in Docker. I check for updates several times a day.</p>
-        <p class="text-start">A strong firewall is backing the server. The server is physically located in Michigan, USA.</p>
-        <p class="text-start">Your emails are stored encrypted and compressed (using LZ4). I, as the server admin, have access to the decryption keys.</p>
+        <p class="text-start">p0ntus mail is powered by Mailu, running in Docker. Updates are applied daily for security.</p>
+        <p class="text-start">The server hosting all of LibreCloud and p0ntus mail is physically located in Atlanta, Georgia and rented from Namecheap Inc.</p>
     </div>
 <%- include('shards/footer') %>

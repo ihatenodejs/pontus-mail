@@ -6,6 +6,21 @@ const axios = require('axios');
 const NodeCache = require('node-cache');
 const cache = new NodeCache({ stdTTL: 1800 });
 
+function checkSetup() {
+  if (!fs.existsSync(path.join(__dirname, '.env'))) {
+    console.error("Couldn't find .env file, please create one using the provided .env.example file.");
+    process.exit(1);
+  }
+
+  const reqVar = ['INTERNAL_PORT'];
+  const missingVar = reqVar.filter(envVar => !process.env[envVar]);
+
+  if (missingVar.length > 0) {
+    console.error(`Oops, you're missing these required variables in your .env file: ${missingVar.join(', ')}`);
+    process.exit(1);
+  }
+}
+
 require('dotenv').config();
 const app = express();
 
@@ -15,45 +30,8 @@ app.set('views', path.join(__dirname, 'src'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//async function fetchDomainData() {
-//  const cachedData = cache.get('domainData');
-//  if (cachedData) {
-//    return cachedData;
-//  }
-//
-//  try {
-//    const response = await axios.get('https://user.p0ntus.com/api/v1/get/domain/all', {
-//      headers: {
-//        'accept': 'application/json',
-//        'X-API-Key': process.env.MC_API_KEY
-//      }
-//    });
-//    const domainData = response.data;
-//    cache.set('domainData', domainData);
-//    return domainData;
-//  } catch (error) {
-//    console.error('Error fetching domain data:', error);
-//    return [];
-//  }
-//}
-
-//function getDomains() {
-//  const domainsPath = path.join(__dirname, 'domains.txt');
-//  try {
-//    const domains = fs.readFileSync(domainsPath, 'utf-8').split('\n').filter(Boolean);
-//    return domains;
-//  } catch (error) {
-//    console.error('Error reading domains.txt:', error);
-//    return [];
-//  }
-//}
-
+// TODO: Reintegrate backend logic for counters on home page
 app.get('/', async (req, res) => {
-  //const domainData = await fetchDomainData();
-  //const domainCount = Array.isArray(domainData) ? domainData.length : 0;
-  //const accountCount = Array.isArray(domainData) ? domainData.reduce((acc, domain) => acc + domain.mboxes_in_domain, 0) : 0;
-  //const totalData = Array.isArray(domainData) ? domainData.reduce((acc, domain) => acc + parseInt(domain.bytes_total), 0) / (1024 * 1024) : 0;
-
   res.render('index', { currentPage: 'home' });
 });
 
@@ -122,7 +100,8 @@ app.get('/guides/vaultwarden/firefox', (req, res) => {
   res.render('guides/vaultwarden/firefox', { currentPage: 'guides' });
 });
 
-// Start server on internal port defined in .env
+// Verify .env and start server on internal port defined in .env
+checkSetup();
 app.listen(process.env.INTERNAL_PORT, () => {
   console.log(`Server started on port ${process.env.INTERNAL_PORT}`);
 });
