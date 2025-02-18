@@ -1,4 +1,6 @@
-# pontus-mail
+# This repo has been moved to [LibreCloud](https://git.pontusmail.org/librecloud)
+
+## pontus-mail
 
 [![Last Update](https://img.shields.io/badge/last_update-23_Jan_2025-blue)](https://github.com/ihatenodejs/pontus-mail)
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
